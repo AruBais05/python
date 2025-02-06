@@ -1,0 +1,1464 @@
+Class Tasks
+
+class String:
+    def __init__(self):
+        self.word = ""
+
+    def getString(self):
+        self.word = input( )
+
+    def printString(self):
+        print(self.word.upper())
+
+s = String()
+s.getString()
+s.printString()
+
+hey
+HEY
+
+
+
+
+
+
+class Shape:
+    def __init__(self):
+        pass
+    
+    def Area(self):
+        return 0
+
+class Square(Shape):
+    def __init__(self, length):
+        super().__init__()  
+        self.length = length 
+    
+    def Area(self):
+        return self.length * self.length 
+
+
+sqr = Square(5)
+print(sqr.Area())
+
+shape = Shape()
+print(shape.Area()) 
+
+25
+0
+
+
+
+
+
+class Shape:
+    def __init__(self):
+        pass  
+    
+    def Area(self):
+        return 0
+
+class Square(Shape):
+    def __init__(self, length):
+        super().__init__()  
+        self.length = length 
+    
+    def Area(self):
+        return self.length * self.length 
+        
+class Rectangle (Shape):
+    def __init__(self,length, width):
+        super().__init__()
+        self.length=length
+        self.width=width
+    def Area(self):
+        return self.width*self.length
+
+sqr = Square(5)
+print(sqr.Area())
+
+rect=Rectangle(5,3)
+print(rect.Area())
+
+shape = Shape()
+print(shape.Area()) 
+
+25 
+15
+0
+
+
+
+
+
+
+import math
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def show(self):
+        print(f"X coordinate: {self.x} Y coordinate: {self.y}")
+        
+
+    def move(self, new_x, new_y):
+        self.x = new_x
+        self.y = new_y
+
+    def dist(self, other_point):
+        return round(math.sqrt((other_point.x - self.x)  2 + (other_point.y - self.y)  2), 2)
+
+p1 = Point(3, 4)
+p2 = Point(7, 1)
+
+p1.show()  
+p2.show()  
+
+print("Distance:", p1.dist(p2)) 
+
+p1.move(10, 10)
+p1.show()
+
+
+
+X coordinate: 3 Y coordinate: 4
+X coordinate: 7 Y coordinate: 1
+Distance: 5.0
+X coordinate: 10 Y coordinate: 10
+
+
+
+
+
+
+
+
+Classes and objects
+
+
+class MyClass:
+  x = 5
+
+print(MyClass)
+
+
+<class '__main__.MyClass'>
+
+
+
+
+class MyClass:
+  x = 5
+
+p1 = MyClass()
+print(p1.x)
+
+
+5
+
+
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+p1 = Person("John", 36)
+
+print(p1.name)
+print(p1.age)
+
+
+John
+36
+
+
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+p1 = Person("John", 36)
+
+print(p1)
+
+
+<__main__.Person object at 0x1047253a0>
+
+
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def __str__(self):
+    return f"{self.name}({self.age})"
+
+p1 = Person("John", 36)
+
+print(p1)
+
+
+John(36)
+
+
+
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+p1.myfunc()
+
+
+Hello my name is John
+
+
+
+
+
+class Person:
+  def __init__(mysillyobject, name, age):
+    mysillyobject.name = name
+    mysillyobject.age = age
+
+  def myfunc(abc):
+    print("Hello my name is " + abc.name)
+
+p1 = Person("John", 36)
+p1.myfunc()
+
+
+Hello my name is John
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+
+p1.age = 40
+
+print(p1.age)
+
+
+40
+
+
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+
+del p1.age
+
+print(p1.age)
+
+
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+Cell In[18], line 13
+      9 p1 = Person("John", 36)
+     11 del p1.age
+---> 13 print(p1.age)
+
+AttributeError: 'Person' object has no attribute 'age'
+
+
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+
+del p1
+
+print(p1)
+
+
+
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[20], line 13
+      9 p1 = Person("John", 36)
+     11 del p1
+---> 13 print(p1)
+
+NameError: name 'p1' is not defined
+
+
+
+
+class Person:
+  pass
+
+# having an empty class definition like this, would raise an error without the pass statement
+
+
+
+
+
+
+Functions
+
+
+def my_function():
+  print("Hello from a function")
+
+my_function()
+
+
+Hello from a function
+
+
+
+def my_function(fname):
+  print(fname + " Refsnes")
+
+my_function("Emil")
+my_function("Tobias")
+my_function("Linus")
+
+
+Emil Refsnes
+Tobias Refsnes
+Linus Refsnes
+
+
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "Linus")
+
+The youngest child is Linus
+
+
+
+def my_function(child3, child2, child1):
+  print("The youngest child is " + child3)
+
+my_function(child1 = "Emil", child2 = "Tobias", child3 = "Linus")
+
+
+The youngest child is Linus
+
+
+
+
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+
+my_function(fname = "Tobias", lname = "Refsnes")
+
+
+His last name is Refsnes
+
+
+
+
+def my_function(country = "Norway"):
+  print("I am from " + country)
+
+my_function("Sweden")
+my_function("India")
+my_function()
+my_function("Brazil")
+
+
+
+I am from Sweden
+I am from India
+I am from Norway
+I am from Brazil
+
+
+
+def my_function(food):
+  for x in food:
+    print(x)
+
+fruits = ["apple", "banana", "cherry"]
+
+my_function(fruits)
+
+
+
+apple
+banana
+cherry
+
+
+def my_function(x):
+  return 5 * x
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9))
+
+
+
+15
+25
+45
+
+
+
+
+def my_function(x, /):
+  print(x)
+
+my_function(3)
+
+3
+
+
+
+
+def my_function(*, x):
+  print(x)
+
+my_function(x = 3)
+
+3
+
+
+
+
+def my_function(a, b, /, *, c, d):
+  print(a + b + c + d)
+
+my_function(5, 6, c = 7, d = 😍
+
+
+26
+
+
+
+def tri_recursion(k):
+  if(k > 0):
+    result = k + tri_recursion(k - 1)
+    print(result)
+  else:
+    result = 0
+  return result
+
+print("Recursion Example Results:")
+tri_recursion(6)
+
+
+
+
+Recursion Example Results:
+1
+3
+6
+10
+15
+21
+
+
+
+
+
+Inheritance
+
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+#Use the Person class to create an object, and then execute the printname method:
+
+x = Person("John", "Doe")
+x.printname()
+
+
+John Doe
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+#Use the Person class to create an object, and then execute the printname method:
+
+x = Person("John", "Doe")
+x.printname()
+
+class Student(Person):
+  pass
+
+x = Student("Mike", "Olsen")
+x.printname()
+
+
+
+
+John Doe
+Mike Olsen
+
+
+
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+class Student(Person):
+  def __init__(self, fname, lname):
+    super().__init__(fname, lname)
+
+x = Student("Mike", "Olsen")
+x.printname()
+
+
+
+Mike Olsen
+
+
+
+
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+class Student(Person):
+  def __init__(self, fname, lname):
+    super().__init__(fname, lname)
+    self.graduationyear = 2019
+
+x = Student("Mike", "Olsen")
+print(x.graduationyear)
+
+
+
+2019
+
+
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+class Student(Person):
+  def __init__(self, fname, lname, year):
+    super().__init__(fname, lname)
+    self.graduationyear = year
+
+x = Student("Mike", "Olsen", 2019)
+print(x.graduationyear)
+
+
+2019
+
+
+
+
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+class Student(Person):
+  def __init__(self, fname, lname, year):
+    super().__init__(fname, lname)
+    self.graduationyear = year
+
+  def welcome(self):
+    print("Welcome", self.firstname, self.lastname, "to the class of", self.graduationyear)
+
+x = Student("Mike", "Olsen", 2024)
+x.welcome()
+
+
+Welcome Mike Olsen to the class of 2024
+
+
+
+
+
+
+
+Lambda
+
+
+x = lambda a : a + 10
+print(x(5))
+
+15
+
+x = lambda a, b : a * b
+print(x(5, 6))
+
+
+30
+
+x = lambda a, b, c : a + b + c
+print(x(5, 6, 2))
+
+13
+
+
+
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+
+print(mydoubler(11))
+
+
+22
+
+
+
+
+
+def myfunc(n):
+  return lambda a : a * n
+
+mytripler = myfunc(3)
+
+print(mytripler(11))
+
+
+33
+
+
+
+
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+mytripler = myfunc(3)
+
+print(mydoubler(11))
+print(mytripler(11))
+
+
+22
+33
+
+
+
+
+
+
+
+
+
+
+Taks-function 2
+
+
+def single(name, d):
+    for p in d:
+        if p["name"] == name:
+            if p["imdb"]>5.5:
+                return True 
+            else:
+                return False
+
+movies = [
+{
+"name": "Usual Suspects", 
+"imdb": 7.0,
+"category": "Thriller"
+},
+{
+"name": "Hitman",
+"imdb": 6.3,
+"category": "Action"
+},
+{
+"name": "Dark Knight",
+"imdb": 9.0,
+"category": "Adventure"
+},
+{
+"name": "The Help",
+"imdb": 8.0,
+"category": "Drama"
+},
+{
+"name": "The Choice",
+"imdb": 6.2,
+"category": "Romance"
+},
+{
+"name": "Colonia",
+"imdb": 7.4,
+"category": "Romance"
+},
+{
+"name": "Love",
+"imdb": 6.0,
+"category": "Romance"
+},
+{
+"name": "Bride Wars",
+"imdb": 5.4,
+"category": "Romance"
+},
+{
+"name": "AlphaJet",
+"imdb": 3.2,
+"category": "War"
+},
+{
+"name": "Ringing Crime",
+"imdb": 4.0,
+"category": "Crime"
+},
+{
+"name": "Joking muck",
+"imdb": 7.2,
+"category": "Comedy"
+},
+{
+"name": "What is the name",
+"imdb": 9.2,
+"category": "Suspense"
+},
+{
+"name": "Detective",
+"imdb": 7.0,
+"category": "Suspense"
+},
+{
+"name": "Exam",
+"imdb": 4.2,
+"category": "Thriller"
+},
+{
+"name": "We Two",
+"imdb": 7.2,
+"category": "Romance"
+}
+]    
+movie=input()
+single(movie, movies)
+
+
+
+ What is the name
+
+True
+
+
+
+
+def sublist(d):
+    list_m=[]
+    for p in d:
+        if p["imdb"]>5.5:
+            list_m.append(p["name"])
+    return list_m  
+
+movies = [
+{
+"name": "Usual Suspects", 
+"imdb": 7.0,
+"category": "Thriller"
+},
+{
+"name": "Hitman",
+"imdb": 6.3,
+"category": "Action"
+},
+{
+"name": "Dark Knight",
+"imdb": 9.0,
+"category": "Adventure"
+},
+{
+"name": "The Help",
+"imdb": 8.0,
+"category": "Drama"
+},
+{
+"name": "The Choice",
+"imdb": 6.2,
+"category": "Romance"
+},
+{
+"name": "Colonia",
+"imdb": 7.4,
+"category": "Romance"
+},
+{
+"name": "Love",
+"imdb": 6.0,
+"category": "Romance"
+},
+{
+"name": "Bride Wars",
+"imdb": 5.4,
+"category": "Romance"
+},
+{
+"name": "AlphaJet",
+"imdb": 3.2,
+"category": "War"
+},
+{
+"name": "Ringing Crime",
+"imdb": 4.0,
+"category": "Crime"
+},
+{
+"name": "Joking muck",
+"imdb": 7.2,
+"category": "Comedy"
+},
+{
+"name": "What is the name",
+"imdb": 9.2,
+"category": "Suspense"
+},
+{
+"name": "Detective",
+"imdb": 7.0,
+"category": "Suspense"
+},
+{
+"name": "Exam",
+"imdb": 4.2,
+"category": "Thriller"
+},
+{
+"name": "We Two",
+"imdb": 7.2,
+"category": "Romance"
+}
+]    
+
+print (sublist( movies))
+
+
+
+['Usual Suspects', 'Hitman', 'Dark Knight', 'The Help', 'The Choice', 'Colonia', 'Love', 'Joking muck', 'What is the name', 'Detective', 'We Two']
+
+
+
+
+def category_search(name, d):
+    category_l=[]
+    for p in d:
+        if p["category"] == name:
+            category_l.append(p["name"])
+    return category_l        
+
+movies = [
+{
+"name": "Usual Suspects", 
+"imdb": 7.0,
+"category": "Thriller"
+},
+{
+"name": "Hitman",
+"imdb": 6.3,
+"category": "Action"
+},
+{
+"name": "Dark Knight",
+"imdb": 9.0,
+"category": "Adventure"
+},
+{
+"name": "The Help",
+"imdb": 8.0,
+"category": "Drama"
+},
+{
+"name": "The Choice",
+"imdb": 6.2,
+"category": "Romance"
+},
+{
+"name": "Colonia",
+"imdb": 7.4,
+"category": "Romance"
+},
+{
+"name": "Love",
+"imdb": 6.0,
+"category": "Romance"
+},
+{
+"name": "Bride Wars",
+"imdb": 5.4,
+"category": "Romance"
+},
+{
+"name": "AlphaJet",
+"imdb": 3.2,
+"category": "War"
+},
+{
+"name": "Ringing Crime",
+"imdb": 4.0,
+"category": "Crime"
+},
+{
+"name": "Joking muck",
+"imdb": 7.2,
+"category": "Comedy"
+},
+{
+"name": "What is the name",
+"imdb": 9.2,
+"category": "Suspense"
+},
+{
+"name": "Detective",
+"imdb": 7.0,
+"category": "Suspense"
+},
+{
+"name": "Exam",
+"imdb": 4.2,
+"category": "Thriller"
+},
+{
+"name": "We Two",
+"imdb": 7.2,
+"category": "Romance"
+}
+]    
+category=input()
+category_search(category, movies)
+
+
+
+ Romance
+['The Choice', 'Colonia', 'Love', 'Bride Wars', 'We Two']
+
+
+
+
+
+
+
+def avr(d):
+    n=len(d)
+    summ=0
+    for p in d:
+        summ += p["imdb"]
+    return summ/n
+
+movies = [
+{
+"name": "Usual Suspects", 
+"imdb": 7.0,
+"category": "Thriller"
+},
+{
+"name": "Hitman",
+"imdb": 6.3,
+"category": "Action"
+},
+{
+"name": "Dark Knight",
+"imdb": 9.0,
+"category": "Adventure"
+},
+{
+"name": "The Help",
+"imdb": 8.0,
+"category": "Drama"
+},
+{
+"name": "The Choice",
+"imdb": 6.2,
+"category": "Romance"
+},
+{
+"name": "Colonia",
+"imdb": 7.4,
+"category": "Romance"
+},
+{
+"name": "Love",
+"imdb": 6.0,
+"category": "Romance"
+},
+{
+"name": "Bride Wars",
+"imdb": 5.4,
+"category": "Romance"
+},
+{
+"name": "AlphaJet",
+"imdb": 3.2,
+"category": "War"
+},
+{
+"name": "Ringing Crime",
+"imdb": 4.0,
+"category": "Crime"
+},
+{
+"name": "Joking muck",
+"imdb": 7.2,
+"category": "Comedy"
+},
+{
+"name": "What is the name",
+"imdb": 9.2,
+"category": "Suspense"
+},
+{
+"name": "Detective",
+"imdb": 7.0,
+"category": "Suspense"
+},
+{
+"name": "Exam",
+"imdb": 4.2,
+"category": "Thriller"
+},
+{
+"name": "We Two",
+"imdb": 7.2,
+"category": "Romance"
+}
+]    
+
+print (f"{avr( movies):.2f}")
+
+
+
+
+6.49
+
+
+
+
+
+
+def category_search(name, d):
+    num=0
+    summ=0
+    for p in d:
+        if p["category"] == name:
+            num +=1
+            summ += p["imdb"]
+    return summ/num        
+
+movies = [
+{
+"name": "Usual Suspects", 
+"imdb": 7.0,
+"category": "Thriller"
+},
+{
+"name": "Hitman",
+"imdb": 6.3,
+"category": "Action"
+},
+{
+"name": "Dark Knight",
+"imdb": 9.0,
+"category": "Adventure"
+},
+{
+"name": "The Help",
+"imdb": 8.0,
+"category": "Drama"
+},
+{
+"name": "The Choice",
+"imdb": 6.2,
+"category": "Romance"
+},
+{
+"name": "Colonia",
+"imdb": 7.4,
+"category": "Romance"
+},
+{
+"name": "Love",
+"imdb": 6.0,
+"category": "Romance"
+},
+{
+"name": "Bride Wars",
+"imdb": 5.4,
+"category": "Romance"
+},
+{
+"name": "AlphaJet",
+"imdb": 3.2,
+"category": "War"
+},
+{
+"name": "Ringing Crime",
+"imdb": 4.0,
+"category": "Crime"
+},
+{
+"name": "Joking muck",
+"imdb": 7.2,
+"category": "Comedy"
+},
+{
+"name": "What is the name",
+"imdb": 9.2,
+"category": "Suspense"
+},
+{
+"name": "Detective",
+"imdb": 7.0,
+"category": "Suspense"
+},
+{
+"name": "Exam",
+"imdb": 4.2,
+"category": "Thriller"
+},
+{
+"name": "We Two",
+"imdb": 7.2,
+"category": "Romance"
+}
+]    
+category=input()
+print (f"{category_search(category, movies):.2f}")
+
+
+
+
+ Thriller
+5.60
+
+
+
+
+
+
+
+Task functions
+
+
+
+def convert(x):
+    return x/28.34952
+grams=int(input())
+print(convert(grams))
+
+
+ 15
+0.5291094875680435
+
+
+
+
+
+def temp_convert(F):
+    return ((5 / 9) * (F - 32))
+temp=int(input())
+print (f" {temp_convert(temp):.3f} Celsius")
+
+
+
+ 372
+ 188.889 Celsius
+
+
+
+
+def solve(numheads, numlegs):
+    rabbits=(numlegs-numheads*2)/2
+    chickens=numheads-rabbits
+    print(f"Rabbits-{rabbits:.0f}, Chickens- {chickens:.0f}")
+
+numheads=int(input())
+numlegs=int(input())
+solve (numheads, numlegs)
+
+
+
+ 35
+ 94
+Rabbits-12, Chickens- 23
+
+
+
+from sympy import *
+def filter_prime(arg):
+    primes=[]
+    numbers = arg.split()
+    for x in numbers:
+        if x.isdigit():
+            if isprime(int(x)):
+                primes.append(int(x))
+    for prime in primes:
+        print(prime)
+  
+numbers=input()
+filter_prime(numbers)
+
+
+
+
+ 13 15 2 3 7
+13
+2
+3
+7
+
+
+
+
+
+
+def permute(s, l, r):
+    if l == r:
+        print("".join(s)) 
+    else:
+        for i in range(l, r):
+            s[l], s[i] = s[i], s[l] 
+            permute(s, l + 1, r) 
+            s[l], s[i] = s[i], s[l]  
+
+s = input()
+permute(list(s), 0, len(s))
+
+
+
+
+ abc
+abc
+acb
+bac
+bca
+cba
+cab
+
+
+
+
+
+def rvrse(s):
+    s.reverse()
+    return " ".join(s) 
+sentence=input()
+words=sentence.split()
+print(rvrse(words))
+
+
+ We are ready
+ready are We
+
+
+
+
+def has_33(nums):
+    b=False
+    for x in range(len(nums)-1):
+        if nums[x]==3 and nums[x+1]==3:
+            b=True
+            break
+    print(b)       
+        
+has_33([1, 3, 3]) 
+has_33([1, 3, 1, 3]) 
+has_33([3, 1, 3]) 
+
+
+True
+False
+False
+
+
+
+
+
+
+def spy_game(nums):
+    sequence = [0, 0, 7]  
+    idx = 0 
+
+    for num in nums:
+        if num == sequence[idx]: 
+            idx += 1  
+        if idx == len(sequence):
+            return True
+
+    return False  
+
+print(spy_game([1, 2, 4, 0, 0, 7, 5])) 
+print(spy_game([1, 0, 2, 4, 0, 5, 7]))  
+print(spy_game([1, 7, 2, 0, 4, 5, 0]))  
+
+
+True
+True
+False
+
+
+
+
+import math
+def volume(r):
+  print(f"{(r*r*r*4*math.pi)/3:.2f}")
+radius=int(input())
+volume(radius)
+
+ 3
+113.10
+
+
+def unique (num):
+    unique_l=[]
+    for x in num:
+        if x not in unique_l:
+            unique_l.append(x)
+    for n in unique_l:
+        print(n, end=" ")
+numbers=input()
+n_list=numbers.split()
+unique(n_list)
+
+ 10 20 10 15 40 95 20
+10 20 15 40 95 
+
+
+
+
+
+def palindrome(word):
+    is_p=True
+    for i in range (0, len(word) // 2):
+        if word[i]!=word[-i-1]:
+            is_p=False
+            break
+    print(is_p)
+        
+word=input()
+palindrome(word)
+
+
+
+
+ madam
+True
+
+
+def histogram(l_num):
+    for x in l_num:
+        print("*"*x)
+
+numbers = list(map(int, input().split()))
+histogram(numbers)
+
+
+
+
+ 4 9 7
+****
+*****
+***
+
+
+
+import random
+rand=random.randint(1, 20)
+count=0
+print ("Hello! What is your name?")
+username=input()
+print(f"Well,{username}, I am thinking of a number between 1 and 20. \nTake a guess.")
+while True:
+    guess=int(input())
+    count += 1
+    if guess<rand:
+        print("Your guess is too low. \nTake a guess.")
+    elif guess>rand:
+        print("Your guess is too high. \nTake a guess.")
+    else:
+        print(f"Good job, {username}! You guessed my number in {count} guesses!")
+        break
+    
+
+
+
+
+Hello! What is your name?
+ KBTU
+Well,KBTU, I am thinking of a number between 1 and 20. 
+Take a guess.
+ 3
+Your guess is too low. 
+Take a guess.
+ 7
+Your guess is too low. 
+Take a guess.
+ 15
+Your guess is too high. 
+Take a guess.
+ 12
+Your guess is too low. 
+Take a guess.
+ 14
+Good job, KBTU! You guessed my number in 5 guesses!
