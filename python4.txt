@@ -1,0 +1,881 @@
+#ITERATORS
+#an iterator is an object which implements the iterator protocol, 
+#which consist of the methods __iter__() and __next__().
+#Return an iterator from a tuple, and print each value:
+
+mytuple = ("apple", "banana", "cherry")
+myit = iter(mytuple)
+
+print(next(myit))
+print(next(myit))
+print(next(myit))
+
+
+#Strings are also iterable objects, containing a sequence of characters:
+
+mystr = "banana"
+myit = iter(mystr)
+
+print(next(myit))
+print(next(myit))
+print(next(myit))
+print(next(myit))
+print(next(myit))
+print(next(myit))
+
+
+#Iterate the values of a tuple:
+
+mytuple = ("apple", "banana", "cherry")
+
+for x in mytuple:
+  print(x)
+  
+  
+#Iterate the characters of a string:
+
+mystr = "banana"
+
+for x in mystr:
+  print(x)
+  
+#The for loop actually creates an iterator object 
+#and executes the next() method for each loop.
+
+
+#Create an iterator that returns numbers, 
+#starting with 1, and each sequence will increase 
+#by one (returning 1,2,3,4,5 etc.):
+
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    x = self.a
+    self.a += 1
+    return x
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+
+
+#Stop after 20 iterations:
+
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    if self.a <= 20:
+      x = self.a
+      self.a += 1
+      return x
+    else:
+      raise StopIteration
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+for x in myiter:
+  print(x)
+  
+  
+  
+#POLYMORPHISM
+
+#For strings len() returns the number of characters:
+
+x = "Hello World!"
+print(len(x))
+
+#For tuples len() returns the number of items in the tuple:
+
+mytuple = ("apple", "banana", "cherry")
+print(len(mytuple))
+
+
+#For dictionaries len() returns the number of key/value pairs 
+#in the dictionary:
+
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+print(len(thisdict))
+
+#Polymorphism is often used in Class methods, 
+#where we can have multiple classes with the same method name.
+
+#Different classes with the same method:
+
+class Car:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Drive!")
+
+class Boat:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Sail!")
+
+class Plane:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Fly!")
+
+car1 = Car("Ford", "Mustang")       #Create a Car object
+boat1 = Boat("Ibiza", "Touring 20") #Create a Boat object
+plane1 = Plane("Boeing", "747")     #Create a Plane object
+
+for x in (car1, boat1, plane1):
+  x.move()
+  
+#Drive!
+#Sail!
+#Fly!
+
+# If we use the example above and make a parent class called Vehicle, 
+#and make Car, Boat, Plane child classes of Vehicle, the child 
+#classes inherits the Vehicle methods, but can override them:
+#Create a class called Vehicle and make Car, Boat, Plane 
+#child classes of Vehicle:
+
+class Vehicle:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Move!")
+
+class Car(Vehicle):
+  pass
+
+class Boat(Vehicle):
+  def move(self):
+    print("Sail!")
+
+class Plane(Vehicle):
+  def move(self):
+    print("Fly!")
+
+car1 = Car("Ford", "Mustang")       #Create a Car object
+boat1 = Boat("Ibiza", "Touring 20") #Create a Boat object
+plane1 = Plane("Boeing", "747")     #Create a Plane object
+
+for x in (car1, boat1, plane1):
+  print(x.brand)
+  print(x.model)
+  x.move()
+  
+'''Ford
+Mustang
+Move!
+Ibiza
+Touring 20
+Sail!
+Boeing
+747
+Fly!
+
+
+In the example above you can see that the Car class is empty,
+but it inherits brand, model, and move() from Vehicle.
+
+The Boat and Plane classes also inherit brand, model, and move() 
+from Vehicle, but they both override the move() method.'''
+
+#Local Scope
+A variable created inside a function belongs to the local scope of
+#that function, and can only be used inside that function.
+
+def myfunc():
+  x = 300
+  print(x)
+
+myfunc()
+
+
+#The local variable can be accessed from a function within the function:
+
+def myfunc():
+  x = 300
+  def myinnerfunc():
+    print(x)
+  myinnerfunc()
+
+myfunc()
+
+
+#Global Scope
+#A variable created in the main body of the Python code 
+#is a global variable and belongs to the global scope.
+
+#Global variables are available from within any scope, global and local.
+
+x = 300
+
+def myfunc():
+  print(x)
+
+myfunc()
+
+print(x)
+#300
+#300
+
+
+#Naming Variables
+If you operate with the same variable name inside and outside of a function, 
+#Python will treat them as two separate variables, one available 
+#in the global scope (outside the function) and one available in the 
+#local scope (inside the function):
+
+#The function will print the local x, and then the code will print the global x:
+
+x = 300
+
+def myfunc():
+  x = 200
+  print(x)
+
+myfunc()
+
+print(x)
+
+#200
+#300
+
+#Global Keyword
+If you need to create a global variable, but are stuck in the local scope, 
+#you can use the global keyword.
+
+#The global keyword makes the variable global.
+
+def myfunc():
+  global x
+  x = 300
+
+myfunc()
+
+print(x)
+#300
+
+
+#To change the value of a global variable inside a function, 
+#refer to the variable by using the global keyword:
+
+x = 300
+
+def myfunc():
+  global x
+  x = 200
+
+myfunc()
+
+print(x)
+#200
+
+#Nonlocal Keyword
+#The nonlocal keyword is used to work with variables inside nested functions.
+
+#The nonlocal keyword makes the variable belong to the outer function.
+
+def myfunc1():
+  x = "Jane"
+  def myfunc2():
+    nonlocal x
+    x = "hello"
+  myfunc2()
+  return x
+
+print(myfunc1())
+
+#hello
+
+
+#MODULE
+#What is a Module?
+#Consider a module to be the same as a code library.
+
+#A file containing a set of functions you want to include in your application.
+#Save this code in a file named mymodule.py
+
+def greeting(name):
+  print("Hello, " + name)
+
+
+#Import the module named mymodule, and call the greeting function:
+
+import mymodule
+
+mymodule.greeting("Jonathan")
+
+#Note: When using a function from a module, 
+#use the syntax: module_name.function_name.
+
+
+#Save this code in the file mymodule.py
+
+person1 = {
+  "name": "John",
+  "age": 36,
+  "country": "Norway"
+}
+
+#Import the module named mymodule, and access the person1 dictionary:
+
+import mymodule
+
+a = mymodule.person1["age"]
+print(a)
+
+#Re-naming a Module
+#Create an alias for mymodule called mx:
+
+import mymodule as mx
+
+a = mx.person1["age"]
+print(a)
+
+
+#Built-in Modules
+#There are several built-in modules in Python, which you can import whenever you like.
+
+Example
+Import and use the platform module:
+
+import platform
+
+x = platform.system()
+print(x)
+
+
+
+
+#Using the dir() Function
+#There is a built-in function to list all the function names (or variable names) in a module. 
+#The dir() function:
+
+#List all the defined names belonging to the platform module:
+
+import platform
+
+x = dir(platform)
+print(x)
+
+#The dir() function can be used on all modules, also the ones you create yourself.
+
+
+#Import From Module
+#You can choose to import only parts from a module, by using the from keyword.
+
+#The module named mymodule has one function and one dictionary:
+
+def greeting(name):
+  print("Hello, " + name)
+
+person1 = {
+  "name": "John",
+  "age": 36,
+  "country": "Norway"
+}
+
+#Example
+#Import only the person1 dictionary from the module:
+
+from mymodule import person1
+
+print (person1["age"])
+
+#Note: When importing using the from keyword, do not use the module name when referring to elements in the module. 
+#Example: person1["age"], not mymodule.person1["age"]
+
+
+
+#DATES
+#A date in Python is not a data type of its own, but we can import a module named datetime to work with dates as date objects.
+
+#Import the datetime module and display the current date:
+
+import datetime
+
+x = datetime.datetime.now()
+print(x)
+#2025-02-14 11:47:21.338648
+
+
+#The date contains year, month, day, hour, minute, second, and microsecond.
+
+#The datetime module has many methods to return information about the date object.
+
+#Return the year and name of weekday:
+
+import datetime
+
+x = datetime.datetime.now()
+
+print(x.year)
+print(x.strftime("%A"))
+#2025
+#Friday
+
+
+#Creating Date Objects
+#To create a date, we can use the datetime() class (constructor) of the datetime module.
+
+#The datetime() class requires three parameters to create a date: year, month, day.
+
+#Example
+#Create a date object:
+
+import datetime
+
+x = datetime.datetime(2020, 5, 17)
+
+print(x)
+#The datetime() class also takes parameters for time and timezone (hour, minute, second, microsecond, tzone), 
+#but they are optional, and has a default value of 0, (None for timezone).
+
+
+
+
+
+#The strftime() Method
+#The datetime object has a method for formatting date objects into readable strings.
+
+#The method is called strftime(), and takes one parameter, format, to specify the format of the returned string:
+
+#Example
+#Display the name of the month:
+
+import datetime
+
+x = datetime.datetime(2018, 6, 1)
+
+print(x.strftime("%B"))
+
+'''
+
+A reference of all the legal format codes:
+
+Directive	Description	Example	Try it
+%a	Weekday, short version	Wed	
+%A	Weekday, full version	Wednesday	
+%w	Weekday as a number 0-6, 0 is Sunday	3	
+%d	Day of month 01-31	31	
+%b	Month name, short version	Dec	
+%B	Month name, full version	December	
+%m	Month as a number 01-12	12	
+%y	Year, short version, without century	18	
+%Y	Year, full version	2018	
+%H	Hour 00-23	17	
+%I	Hour 00-12	05	
+%p	AM/PM	PM	
+%M	Minute 00-59	41	
+%S	Second 00-59	08	
+%f	Microsecond 000000-999999	548513	
+%z	UTC offset	+0100	
+%Z	Timezone	CST	
+%j	Day number of year 001-366	365	
+%U	Week number of year, Sunday as the first day of week, 00-53	52	
+%W	Week number of year, Monday as the first day of week, 00-53	52	
+%c	Local version of date and time	Mon Dec 31 17:41:00 2018	
+%C	Century	20	
+%x	Local version of date	12/31/18	
+%X	Local version of time	17:41:00	
+%%	A % character	%	
+%G	ISO 8601 year	2018	
+%u	ISO 8601 weekday (1-7)	1	
+%V	ISO 8601 weeknumber (01-53)	01 
+'''
+
+
+#MATH
+#Built-in Math Functions
+#The min() and max() functions can be used to find the lowest or highest value in an iterable:
+
+x = min(5, 10, 25)
+y = max(5, 10, 25)
+
+print(x)
+print(y)
+
+
+#The abs() function returns the absolute (positive) value of the specified number:
+
+Example
+x = abs(-7.25)
+
+print(x)
+
+
+#The pow(x, y) function returns the value of x to the power of y (x^y).
+#Return the value of 4 to the power of 3 (same as 4 * 4 * 4):
+
+x = pow(4, 3)
+
+print(x)
+
+
+
+
+#Python has also a built-in module called math, which extends the list of mathematical functions.
+
+#To use it, you must import the math module:
+#import math
+#When you have imported the math module, you can start using methods and constants of the module.
+
+#The math.sqrt() method for example, returns the square root of a number:
+
+import math
+
+x = math.sqrt(64)
+
+print(x)
+#8
+
+
+
+
+#The math.ceil() method rounds a number upwards to its nearest integer, and the math.floor() 
+#method rounds a number downwards to its nearest integer, and returns the result:
+
+import math
+
+x = math.ceil(1.4)
+y = math.floor(1.4)
+
+print(x) # returns 2
+print(y) # returns 1
+
+
+
+
+#The math.pi constant, returns the value of PI (3.14...):
+
+import math
+
+x = math.pi
+
+print(x)
+
+
+
+#Python JSON
+#JSON is a syntax for storing and exchanging data.
+
+#JSON is text, written with JavaScript object notation.
+
+#Python has a built-in package called json, which can be used to work with JSON data.
+
+#Import the json module:
+
+import json
+
+
+
+
+#Parse JSON - Convert from JSON to Python
+#If you have a JSON string, you can parse it by using the json.loads() method.
+
+#The result will be a Python dictionary.
+
+#Example
+#Convert from JSON to Python:
+
+import json
+
+# some JSON:
+x =  '{ "name":"John", "age":30, "city":"New York"}'
+
+# parse x:
+y = json.loads(x)
+
+# the result is a Python dictionary:
+print(y["age"])
+
+
+
+
+#Convert from Python to JSON
+#If you have a Python object, you can convert it into a JSON string by using the json.dumps() method.
+
+#Example
+#Convert from Python to JSON:
+
+import json
+
+# a Python object (dict):
+x = {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+
+# convert into JSON:
+y = json.dumps(x)
+
+# the result is a JSON string:
+print(y)
+
+#{"name": "John", "age": 30, "city": "New York"}
+
+
+
+
+
+'''
+You can convert Python objects of the following types, into JSON strings:
+
+dict
+list
+tuple
+string
+int
+float
+True
+False
+None
+'''
+
+
+#Example
+#Convert Python objects into JSON strings, and print the values:
+
+import json
+
+print(json.dumps({"name": "John", "age": 30}))
+print(json.dumps(["apple", "bananas"]))
+print(json.dumps(("apple", "bananas")))
+print(json.dumps("hello"))
+print(json.dumps(42))
+print(json.dumps(31.76))
+print(json.dumps(True))
+print(json.dumps(False))
+print(json.dumps(None))
+
+
+
+#{"name": "John", "age": 30}
+#["apple", "bananas"]
+#["apple", "bananas"]
+#"hello"
+#42
+#31.76
+#true
+#false
+#null
+
+'''
+When you convert from Python to JSON, Python objects are converted into the JSON (JavaScript) equivalent:
+
+Python	JSON
+dict	Object
+list	Array
+tuple	Array
+str	String
+int	Number
+float	Number
+True	true
+False	false
+None	null
+
+'''
+
+
+
+#Convert a Python object containing all the legal data types:
+
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+
+print(json.dumps(x))
+
+
+'''
+{"name": "John", "age": 30, "married": true, "divorced": false, 
+"children": ["Ann","Billy"], "pets": null, 
+"cars": [{"model": "BMW 230", "mpg": 27.5}, {"model": "Ford Edge", "mpg": 24.1}]}
+'''
+
+
+#Format the Result
+#The example above prints a JSON string, but it is not very easy to read, with no indentations and line breaks.
+
+#The json.dumps() method has parameters to make it easier to read the result:
+
+#Example
+#Use the indent parameter to define the numbers of indents:
+
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+
+# use four indents to make it easier to read the result:
+print(json.dumps(x, indent=4))
+
+'''
+{
+    "name": "John",
+    "age": 30,
+    "married": true,
+    "divorced": false,
+    "children": [
+        "Ann",
+        "Billy"
+    ],
+    "pets": null,
+    "cars": [
+        {
+            "model": "BMW 230",
+            "mpg": 27.5
+        },
+        {
+            "model": "Ford Edge",
+            "mpg": 24.1
+        }
+    ]
+}
+'''
+
+#You can also define the separators, default value is (", ", ": "), which means using a comma and a space to separate each object, and a colon and a space to separate keys from values:
+
+#Example
+#Use the separators parameter to change the default separator:
+
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+
+# use . and a space to separate objects, and a space, a = and a space to separate keys from their values:
+print(json.dumps(x, indent=4, separators=(". ", " = ")))
+
+
+'''
+{
+    "name" = "John".
+    "age" = 30.
+    "married" = true.
+    "divorced" = false.
+    "children" = [
+        "Ann".
+        "Billy"
+    ].
+    "pets" = null.
+    "cars" = [
+        {
+            "model" = "BMW 230".
+            "mpg" = 27.5
+        }.
+        {
+            "model" = "Ford Edge".
+            "mpg" = 24.1
+        }
+    ]
+}
+'''
+
+
+#Order the Result
+#The json.dumps() method has parameters to order the keys in the result:
+
+#Example
+#Use the sort_keys parameter to specify if the result should be sorted or not:
+
+import json
+
+x = {
+  "name": "John",
+  "age": 30,
+  "married": True,
+  "divorced": False,
+  "children": ("Ann","Billy"),
+  "pets": None,
+  "cars": [
+    {"model": "BMW 230", "mpg": 27.5},
+    {"model": "Ford Edge", "mpg": 24.1}
+  ]
+}
+
+# sort the result alphabetically by keys:
+print(json.dumps(x, indent=4, sort_keys=True))
+
+
+'''
+{
+    "age": 30,
+    "cars": [
+        {
+            "model": "BMW 230",
+            "mpg": 27.5
+        },
+        {
+            "model": "Ford Edge",
+            "mpg": 24.1
+        }
+    ],
+    "children": [
+        "Ann",
+        "Billy"
+    ],
+    "divorced": false,
+    "married": true,
+    "name": "John",
+    "pets": null
+}
+'''
