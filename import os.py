@@ -42,14 +42,3 @@ def delete(path):
     if os.path.exists(path) and os.access(path, os.W_OK):
         os.remove(path)
         print("Deleted")
-
-
-
-print(list("/Users/zhanel/Downloads/Python/Lab 6"))
-print(access("/Users/zhanel/Downloads/Python/Lab 6"))
-print(info("/Users/zhanel/Downloads/Python/Lab 6"))
-print(count("/Users/zhanel/Downloads/Python/Lab 6/Testing/Example.txt"))
-print(write("/Users/zhanel/Downloads/Python/Lab 6/Testing/Example.txt", ["words", "c1", "english"]))
-print(generate())
-print(f_copy("/Users/zhanel/Downloads/Python/Lab 6/Testing/Example.txt", "/Users/zhanel/Downloads/Python/Lab 6/Testing/Example.txt"))
-print(delete("/Users/zhanel/work"))
